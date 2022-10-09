@@ -4,6 +4,7 @@ import Image from "next/image";
 import Center from "../Components/Center";
 import { getSession } from "next-auth/react";
 import Sidebar from "../Components/Sidebar";
+import Player from "../Components/Player";
 
 const Home: NextPage = () => {
   return (
@@ -11,9 +12,10 @@ const Home: NextPage = () => {
       <main className="flex">
         <Sidebar />
         <Center />
-        {/* center */}
       </main>
-      <div>{/* player */}</div>
+      <div className="sticky bottom-0">
+        <Player />
+      </div>
     </div>
   );
 };
