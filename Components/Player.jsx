@@ -6,13 +6,17 @@ import useSpotify from "../hooks/useSpotify";
 import useSongInfo from "../hooks/useSongInfo";
 import { debounce } from "lodash";
 import {
-  FastForwardIcon,
   ReplyIcon,
   SwitchHorizontalIcon,
   VolumeOffIcon,
   VolumeUpIcon,
 } from "@heroicons/react/outline";
-import { PauseIcon, PlayIcon, RewindIcon } from "@heroicons/react/solid";
+import {
+  FastForwardIcon,
+  PauseIcon,
+  PlayIcon,
+  RewindIcon,
+} from "@heroicons/react/solid";
 
 function Player() {
   const { data: session } = useSession();
@@ -89,9 +93,15 @@ function Player() {
           /*  onClick={()=>SpotifyApi.skipToPrevious()} */ className="h-5 w-5 cursor-pointer hover:scale-125 transition transform duration-100 ease-out"
         />
         {isPlaying ? (
-          <PauseIcon onClick={handlePlayPause} className="h-5 w-5 cursor-pointer hover:scale-125 transition transform duration-100 ease-out" />
+          <PauseIcon
+            onClick={handlePlayPause}
+            className="h-5 w-5 cursor-pointer hover:scale-125 transition transform duration-100 ease-out"
+          />
         ) : (
-          <PlayIcon onClick={handlePlayPause} className="h-5 w-5 cursor-pointer hover:scale-125 transition transform duration-100 ease-out" />
+          <PlayIcon
+            onClick={handlePlayPause}
+            className="h-5 w-5 cursor-pointer hover:scale-125 transition transform duration-100 ease-out"
+          />
         )}
 
         <FastForwardIcon className="h-5 w-5 cursor-pointer hover:scale-125 transition transform duration-100 ease-out" />
