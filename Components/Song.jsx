@@ -4,7 +4,7 @@ import { milliToMinute } from "../lib/time";
 import { useRecoilState } from "recoil";
 import { currentTrackIdState, isPlayingState } from "../atoms/songAtom";
 
-function Song({ order, track }): JSX.Element {
+function Song({ order, track }){
   const SpotifyApi = useSpotify();
   const [currentTrackId, setCurrentTrackId] =
     useRecoilState(currentTrackIdState);

@@ -25,10 +25,10 @@ function Player() {
   const songInfo = useSongInfo();
   const fetchCurrentSong = () => {
     if (!songInfo) {
-      SpotifyApi.getMyCurrentPlayingTrack().then((data: any) => {
+      SpotifyApi.getMyCurrentPlayingTrack().then((data) => {
         setCurrentTrackId(data.body?.item?.id);
 
-        SpotifyApi.getMyCurrentPlaybackState().then((data: any) => {
+        SpotifyApi.getMyCurrentPlaybackState().then((data) => {
           setIsPlaying(data.body?.is_playing);
         });
       });
@@ -36,7 +36,7 @@ function Player() {
   };
 
   const handlePlayPause = () => {
-    SpotifyApi.getMyCurrentPlaybackState().then((data: any) => {
+    SpotifyApi.getMyCurrentPlaybackState().then((data) => {
       if (data.body?.is_playing) {
         SpotifyApi.pause();
         setIsPlaying(false);
@@ -60,7 +60,7 @@ function Player() {
   }, [volume]);
 
   const debouncedAdjustVolume = useCallback(
-    debounce((volume: any) => {
+    debounce((volume) => {
       SpotifyApi.setVolume(volume);
     }, 500),
     []

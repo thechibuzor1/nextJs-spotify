@@ -19,7 +19,7 @@ function Sidebar() {
   const { data: session } = useSession();
   useEffect(() => {
     if (SpotifyApi.getAccessToken()) {
-      SpotifyApi.getUserPlaylists().then((data: any) => {
+      SpotifyApi.getUserPlaylists().then((data) => {
         setPlaylist(data.body.items);
       });
     }
@@ -62,11 +62,11 @@ function Sidebar() {
 
         {playlist.map((item) => (
           <p
-            onClick={() => setPlaylistId(item.id)}
-            key={item.id}
+            onClick={() => setPlaylistId(item?.id)}
+            key={item?.id}
             className="cursor-pointer hover:text-white"
           >
-            {item.name}
+            {item?.name}
           </p>
         ))}
       </div>

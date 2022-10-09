@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "Components/Center.jsx", "Components/Player.jsx", "Components/Sidebar.jsx", "hooks/useSpotify.js", "Components/Song.jsx", "Components/Songs.jsx"],
   "exclude": ["node_modules"]
 }

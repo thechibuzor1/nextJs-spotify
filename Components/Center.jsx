@@ -7,18 +7,18 @@ import { playlistIdState, playlistState } from "../atoms/playlistAtom";
 import useSpotify from "../hooks/useSpotify";
 import Songs from "./Songs";
 
-const colors = [
-  "from-indigo-500",
-  "from-blue-500",
-  "from-red-500",
-  "from-green-500",
-  "from-yellow-500",
-  "from-pink-500",
-  "from-purple-500",
-  "from-orange-500",
-  "from-violet-500",
-];
 function Center() {
+  const colors = [
+    "from-indigo-500",
+    "from-blue-500",
+    "from-red-500",
+    "from-green-500",
+    "from-yellow-500",
+    "from-pink-500",
+    "from-purple-500",
+    "from-orange-500",
+    "from-violet-500",
+  ];
   const { data: session } = useSession();
   const [color, setColor] = useState(null);
   const playlistId = useRecoilValue(playlistIdState);
@@ -26,15 +26,15 @@ function Center() {
   const SpotifyApi = useSpotify();
 
   useEffect(() => {
-    setColor(shuffle(colors).pop());
+    return setColor(shuffle(colors).pop());
   }, [playlistId]);
 
   useEffect(() => {
-    SpotifyApi.getPlaylist(playlistId)
-      .then((data: { body: ((currVal: null) => null) | null }) => {
+    SpotifyApi.getPlaylist(playlistId).then(
+      ((data) => {
         setPlaylist(data.body);
       })
-      .catch((err: any) => console.log(err));
+    ).catch((err) => console.log(err))
   }, [SpotifyApi, playlistId]);
 
   return (
