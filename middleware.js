@@ -5,7 +5,7 @@ export async function middleware(req) {
 
   if (req.nextUrl.pathname === "/") {
     const session = await getToken({ req, secret: process.env.JWT_SECRET });
-    if (!session) return NextResponse.redirect("https://spotify-remote-controller.vercel.app/Login");
+    if (!session) return NextResponse.redirect("/Login");
   }
   return NextResponse.next();
 }
