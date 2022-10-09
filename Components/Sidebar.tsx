@@ -6,7 +6,7 @@ import {
   PlusCircleIcon,
   RssIcon,
 } from "@heroicons/react/outline";
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import useSpotify from "../hooks/useSpotify";
 import { useRecoilState } from "recoil";
 import { playlistIdState } from "../atoms/playlistAtom";
@@ -19,7 +19,7 @@ function Sidebar() {
   const { data: session } = useSession();
   useEffect(() => {
     if (SpotifyApi.getAccessToken()) {
-      SpotifyApi.getUserPlaylists().then((data) => {
+      SpotifyApi.getUserPlaylists().then((data: any) => {
         setPlaylist(data.body.items);
       });
     }

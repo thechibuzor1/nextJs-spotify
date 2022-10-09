@@ -1,6 +1,4 @@
 import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
 import Center from "../Components/Center";
 import { getSession } from "next-auth/react";
 import Sidebar from "../Components/Sidebar";
