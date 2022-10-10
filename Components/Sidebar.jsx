@@ -8,18 +8,19 @@ import {
 } from "@heroicons/react/outline";
 import { useSession } from "next-auth/react";
 import useSpotify from "../hooks/useSpotify";
-import { useRecoilState } from "recoil";
-import { playlistIdState } from "../atoms/playlistAtom";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { playlistIdState, showSideBarState } from "../atoms/playlistAtom";
 import { HeartIcon } from "@heroicons/react/solid";
 
 function Sidebar() {
   const SpotifyApi = useSpotify();
   const [playlist, setPlaylist] = useState([]);
+  const show = useRecoilValue(showSideBarState);
   const [playlistId, setPlaylistId] = useRecoilState(playlistIdState);
   const { data: session } = useSession();
   useEffect(() => {
     if (SpotifyApi.getAccessToken()) {
-      SpotifyApi.getUserPlaylists().then((data) => {
+      SpotifyApi.getUserPlaylists({ limit: 50, offset: 0 }).then((data) => {
         setPlaylist(data.body.items);
       });
     }
@@ -27,9 +28,11 @@ function Sidebar() {
 
   return (
     <div
-      className="text-gray-500 p-5 border-r border-gray-900
+      className={`text-gray-500 p-5 border-r border-gray-900
      overflow-y-scroll h-screen scrollbar-hide
-      text-xs lg:text-sm sm:max-w-[12rem] lg:max-w-[15rem] hidden md:inline-flex pb-36 transition transform duration-500 ease-in-out"
+      text-xs lg:text-sm sm:max-w-[12rem] lg:max-w-[15rem] ${
+        !show && "hidden"
+      } md:inline-flex pb-36 transition transform duration-500 ease-in-out`}
     >
       <div className="space-y-4">
         <button className="flex items-center space-x-2 hover:text-white">
@@ -49,7 +52,12 @@ function Sidebar() {
           <PlusCircleIcon className="h-5 w-5" />
           <p>Create Playlist</p>
         </button>
-        <button className="flex items-center space-x-2 text-blue-700  hover:text-white">
+        <button
+          className={`flex items-center space-x-2 ${
+            playlistId !== "" ? "text-blue-700" : "text-white"
+          }  hover:text-white`}
+          onClick={() => setPlaylistId("")}
+        >
           <HeartIcon className="h-5 w-5" />
           <p>Liked Songs</p>
         </button>
@@ -64,7 +72,9 @@ function Sidebar() {
           <p
             onClick={() => setPlaylistId(item?.id)}
             key={item?.id}
-            className="cursor-pointer hover:text-white"
+            className={`cursor-pointer hover:text-white ${
+              playlistId === item?.id && "text-white"
+            }`}
           >
             {item?.name}
           </p>

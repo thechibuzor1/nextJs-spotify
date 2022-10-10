@@ -27,6 +27,7 @@ function Player() {
   const [volume, setVolume] = useState(50);
 
   const songInfo = useSongInfo();
+
   const fetchCurrentSong = () => {
     if (!songInfo) {
       SpotifyApi.getMyCurrentPlayingTrack().then((data) => {
@@ -90,7 +91,8 @@ function Player() {
       <div className="flex items-center justify-evenly">
         <SwitchHorizontalIcon className="h-5 w-5 cursor-pointer hover:scale-125 transition transform duration-100 ease-out" />
         <RewindIcon
-          /*  onClick={()=>SpotifyApi.skipToPrevious()} */ className="h-5 w-5 cursor-pointer hover:scale-125 transition transform duration-100 ease-out"
+          onClick={() => SpotifyApi.skipToPrevious()}
+          className="h-5 w-5 cursor-pointer hover:scale-125 transition transform duration-100 ease-out"
         />
         {isPlaying ? (
           <PauseIcon
@@ -104,7 +106,10 @@ function Player() {
           />
         )}
 
-        <FastForwardIcon className="h-5 w-5 cursor-pointer hover:scale-125 transition transform duration-100 ease-out" />
+        <FastForwardIcon
+          onClick={() => SpotifyApi.skipToNext()}
+          className="h-5 w-5 cursor-pointer hover:scale-125 transition transform duration-100 ease-out"
+        />
         <ReplyIcon className="h-5 w-5 cursor-pointer hover:scale-125 transition transform duration-100 ease-out" />
       </div>
       <div className="flex items-center space-x-3 md:space-x-4 justify-end pr-5">

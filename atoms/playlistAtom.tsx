@@ -7,5 +7,15 @@ export const playlistState = atom({
 
 export const playlistIdState = atom({
   key: "playlistIdState",
-  default: "37i9dQZF1EIW3crQMXyiZe",
+  default: "",
+});
+
+export const savedSongsState = atom({
+  key: "savedSongsAtomState",
+  default: null,
+});
+
+export const showSideBarState = atom({
+  key: "showSideBarState",
+  default: false,
 });
